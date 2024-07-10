@@ -1,4 +1,4 @@
-import { User } from './user.model.js';
+import { User } from "./user.model.js";
 
 function responseWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -11,7 +11,7 @@ function responseWithResult(res, statusCode) {
 
 export function getAll(req, res, next) {
   return User.find().then((userlist) => {
-    res.render('userlist', { data: userlist });
+    res.render("userlist", { data: userlist });
   });
 }
 
@@ -29,7 +29,7 @@ export function create(req, res, next) {
 
 export function login(req, res, next) {
   const { email, password } = req.body || {};
-  User.findOne({ email, password })
+  return User.findOne({ email, password })
     .then((user) => {
       return user;
     })
@@ -38,17 +38,20 @@ export function login(req, res, next) {
 
 export function available(req, res) {
   const { email, latitude, longitude } = req.body || {};
-  return User.longitude(email, { latitude, longitude })
+  console.log(email, latitude, longitude);
+  return User.available(email, { latitude, longitude })
     .then((user) => {
-      return '아휴 이제, 손님 좀 받자';
+      return "아휴 이제 손님좀 받아보자";
     })
     .then(responseWithResult(res));
+  //.catch 처리하자.
 }
 
 export function unavailable(req, res) {
   return User.unavailable(req.body.email)
     .then((user) => {
-      return '나는 이제 손님 못받아유';
+      return "저 손님 못받아유...";
     })
     .then(responseWithResult(res));
+  //.catch 처리하자.
 }

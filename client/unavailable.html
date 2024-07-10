@@ -1,11 +1,10 @@
 <a href="/">메뉴로 이동</a>
 <h1>unavailable</h1>
 <form id="frmLogin">
-  운전자ID(Email) : <input type="text" name="email" /><br>
+  운전자ID: <input type="text" name="email" /><br />
 </form>
-<button onclick="unavailable()">상태변경(자동)</button><br />
-<button>상태변경(수동)</button>
-
+<button onclick="unavailable()">(자동)불가능상태로 변경</button><br />
+<button>(수동)불가능상태로 변경</button><br />
 <script>
   const $ = document.querySelector.bind(document);
   async function unavailable() {
@@ -14,7 +13,6 @@
     formData.forEach(function (value, key) {
       data[key] = value;
     });
-
     alert(JSON.stringify(data));
 
     var url = '/api/users/unavailable';
@@ -25,8 +23,7 @@
       },
       body: JSON.stringify(data),
     });
-    alert('나는 이제 손님 못받아유');
     const json = await response.json();
-    console.log(JSON.stringify(json));
+    alert(JSON.stringify(json));
   }
 </script>

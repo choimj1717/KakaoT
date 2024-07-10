@@ -1,9 +1,7 @@
 <html>
 <head>
 <style>
-th,tr{
-  white-space: nowrwap;
-}
+th,tr{white-space: nowrap;}
 </style>
 </head>
 <body>
@@ -15,7 +13,7 @@ th,tr{
   <th>역할</th>
   <th>로그인계정</th>
   <th>비밀번호</th>
-  <th>availablity</th>
+  <th>availability</th>
   <th>위도</th>
   <th>경도</th>
 <% for (var i=0; i<data.length; i++){ %>
@@ -31,6 +29,6 @@ th,tr{
       <td><%= data[i].position.longitude %></td>
     <% } %>
   </tr>
-  <% } %>
+<% } %>
 </body>
 </html>
